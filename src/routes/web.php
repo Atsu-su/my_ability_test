@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [ContactController::class, 'index'])->name('index');
+Route::get('/confirm', function (){
+    return view('confirm', [
+        'name' => 'abc',
+        'email' => 'abc@abc.com',
+        'tel' => '0123456789',
+        'content' => 'Hello, Laravel!',]);
 });
+Route::post('/confirm', [ContactController::class, 'confirm'])->name('confirm');
+// Route::get('/sent', function (){
+//     return view('thanks');
+// });
+Route::post('/contacts', [ContactController::class, 'store'])->name('store');
