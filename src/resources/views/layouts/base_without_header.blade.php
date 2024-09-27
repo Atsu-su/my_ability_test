@@ -12,7 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-@include('components.header')
 @yield('content')
 </body>
 </html>

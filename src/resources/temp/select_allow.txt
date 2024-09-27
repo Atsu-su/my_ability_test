@@ -1,0 +1,49 @@
+<div class="custom-select">
+  <select>
+    <option value="1">オプション1</option>
+    <option value="2">オプション2</option>
+    <option value="3">オプション3</option>
+  </select>
+</div>
+
+----------------------------------------------------
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 30px; /* 矢印のための余白 */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.custom-select::after {
+  content: '\25BC'; /* 下向き三角形 */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* クリックイベントが select に渡るようにする */
+}
+
+/* IE11 用のハック */
+select::-ms-expand {
+  display: none;
+}
+
+/* オプション: ホバー時のスタイル */
+.custom-select:hover::after {
+  color: #888;
+}
+
+/* オプション: フォーカス時のスタイル */
+.custom-select select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+}

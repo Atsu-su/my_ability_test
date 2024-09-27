@@ -1,86 +1,62 @@
 @extends('layouts.base_with_header')
+@section('title', 'お問い合わせ')
 @section('content')
   <main>
     <div class="contact-form__content">
-      <div class="contact-form__title">
-        <h2>Contact</h2>
-      </div>
-      <table class="contact-form__table">
-        <tr class="contact-form__name">
+      <h2 class="contact-form__title">Contact</h2>
+      <form action="" method="post">
+        <table class="contact-form__table">
+          <tr class="contact-form__name">
             <th>お名前<span class="necessary">※</span></th>
-            <td><input type="text"><input type="text"></td>
-        </tr>
-        <tr class="contact-form_gender">
+            <td><input type="text" name="last_name" value="{{ old('last_name') ?? session('confirm') }}" placeholder="例: 山田"><input type="text" name="first_name" placeholder="例: 太郎"></td>
+          </tr>
+          <tr class="contact-form__gender">
             <th>性別<span class="necessary">※</span></th>
-            <td></td>
-        </tr>
-      </table>
-
-
-      {{-- <form class="form" action="{{ route('confirm') }}" method="post">
-        @csrf
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">お名前</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="text" name="name" value="{{ old('name') }}" placeholder="お名前を入力してください" />
-            </div>
-            @if ($errors->has('name'))
-              <div class="form__error">
-                {{ $errors->first('name') }}
-              </div>
-            @endif
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">メールアドレス</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="email" name="email" value="{{ old('email') }}" placeholder="example@abc.com" />
-            </div>
-            @if ($errors->has('email'))
-              <div class="form__error">
-                {{ $errors->first('email') }}
-              </div>
-            @endif
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">電話番号</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="tel" name="tel" value="{{ old('tel') }}" placeholder="09012345678" />
-            </div>
-            @if ($errors->has('tel'))
-              <div class="form__error">
-                {{ $errors->first('tel') }}
-              </div>
-            @endif
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">お問い合わせ内容</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--textarea">
-              <textarea name="content" placeholder="資料の送付をお願いしたいです。（1000文字以内）">{{ old('content') }}</textarea>
-            </div>
-          </div>
-        </div>
-        <div class="form__button">
-          <button class="form__button-submit" type="submit">送 信</button>
-        </div>
-      </form> --}}
+            <td>
+                <input id="option1" type="radio" name="gender">
+                <label for="option1">男性</label>
+                <input id="option2" type="radio" name="gender">
+                <label for="option2">女性</label>
+                <input id="option3" type="radio" name="gender">
+                <label for="option3">その他</label>
+              </td>
+          </tr>
+          <tr class="contact-form__email">
+            <th>メールアドレス<span class="necessary">※</span></th>
+            <td><input type="text" name="email" placeholder="例: test@example.com"></td>
+          </tr>
+          <tr class="contact-form__tel">
+            <th>電話番号<span class="necessary">※</span></th>
+            <td>
+              <input type="text" name="tel[]" placeholder="080"><span>-</span><input type="text" name="tel[]" placeholder="1234"><span> -</span><input type="text" name="tel[]" placeholder="5678">
+            </td>
+          </tr>
+          <tr class="contact-form__address">
+            <th>住所<span class="necessary">※</span></th>
+            <td><input type="text" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3"></td>
+          </tr>
+          <tr class="contact-form__building">
+            <th>建物名</th>
+            <td><input type="text" name="building" placeholder="例: 千駄ヶ谷マンション101"></td>
+          </tr>
+          <tr class="contact-form__category">
+            <th>お問い合わせの種類<span class="necessary">※</span></th>
+            <td>
+              <select name="category_id">
+                <option value="">選択してください</option>
+                <option value="1">カテゴリ1</option>
+                <option value="2">カテゴリ2</option>
+                <option value="3">カテゴリ3</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="contact-form__detail">
+            <th>お問い合わせ内容<span class="necessary">※</span></th>
+            <td><textarea name="detail"></textarea></td>
+          </tr>
+        </table>
+        <button class="contact-form__btn c-btn c-btn--contact-form" type="submit">確認画面</button>
+      </form>
     </div>
   </main>
 @endsection

@@ -5,34 +5,89 @@
 /* カラーコード */
 :root {
     --color-font-gray: #8B7969;
+    --color-font-gray-transparent: rgba(139, 121, 105, 0.05);
+    --color-font-light-gray: #BEB1A6;
+    --color-font-lighter-gray: #D9C6B5;
     --color-font-red: #FF9494;
     --color-font-white: #fff;
+    --color-radiobtn-gray: #8B7969;
     --color-bg-gray: #82756A;
+    --color-bg-light-gray: #BEB1A6;
+    --color-bg-form-lighter-gray: #FBFBFB;
+    --color-bg-brown: #8B7969;
+    --color-bg-light-brown: #BAA899;
     --color-bg-white: #fff;
+    --color-bg-red-gray: #F1ECE7;
     --color-bg-form-gray: #F4F4F4;
-    --color-bg-rdbtn-gray: #8B7969;
+    --color-bg-btn-dark-brown: #82756A;
+    --color-bg-btn-light-brown: #D9C6B5;
+    --color-bg-btn-gray-transparent: rgba(240, 240, 240, 0.6);
+    --color-bg-btn-thick-gray-transparent: rgba(225, 219, 214, 0.6);
+    --color-bg-btn-thicker-gray-transparent: rgba(244, 244, 244, 0.3);
+    --color-bg-btn-thick-gray: #E1DBD699;
+    --color-bg-btn-red: #BA370D;
     --color-border-gray: #E0DFDE;
-    --color-border-circle-gray: #8B7969;
+    --color-border-gray-orange: #E3DED9;
+    --color-border-brown-orange: #C5B9B0;
+    --color-border-light-brown-orange: #D9C6B5;
+    --color-border-brown: #8B7969;
+    --color-border-brown-transparent: rgba(217, 198, 181, 0.6);
+    --color-shadow-brown-transparent: rgba(139, 121, 105, 0.25);
 }
 
-/* ボディ */
+/* 各タグのデフォルト設定 */
+
+/* ------------------------ */
+/* 時間があれば英語のみInikaに変更
+/* ------------------------ */
 body {
     font-family: "Inika", serif;
     font-size: 20px;
-    color: var(--color-font-gray);
+    color: var(--color-font-gray);  /* デフォルト */
     letter-spacing: 0.08em;
     line-height: 1.3;
     background-color: var(--color-bg-white);
 }
 
-/* ------------------------- */
-/* レイアウト（l-）
-/* ------------------------- */
+button {
+    font-family: "Inika", serif;
+}
 
-.l-container {
-    margin: 0 auto;
-    width: 70%;
-    max-width: 1366px;
+input {
+    color: var(--color-font-gray);
+}
+
+input::placeholder {
+    color: var(--color-font-light-gray)
+}
+
+select {
+    color: var(--color-font-gray);
+}
+
+textarea {
+    padding: 10px;
+    color: var(--color-font-gray);
+    font-size: 14px;
+}
+
+input,
+textarea,
+select{
+    outline: none;
+    transition: border-color 0.1s ease, box-shadow 0.1s ease;
+}
+
+input:not(input[type="radio"]):focus,
+textarea:focus,
+select:focus{
+    border-color: var(--color-border-light-brown-orange);
+    box-shadow: 0 0 5px var(--color-border-light-brown-orange);
+}
+
+/* 共通設定（span） */
+.necessary {
+    color: var(--color-font-red);
 }
 
 /* ------------------------- */
@@ -41,11 +96,10 @@ body {
 
 /* ボタン */
 .c-btn {
-    display: inline-block;
+    display: block;
     color: var(--color-font-white);
+    font-size: 20px;
     border: none;
-    border-radius: 5px;
-    font-family : 'Noto Sans JP', sans-serif;
 }
 
 .c-btn:hover {
@@ -53,28 +107,90 @@ body {
     opacity: 0.5;
 }
 
-.c-btn--create {
-    width: 200px;
-    height: 55px;
-        ;
-    letter-spacing: 0.08em;
-    background-color: var(--color-bg-btn-create);
+.c-btn--contact-form {
+    width: 160px;
+    height: 46px;
+    background-color: var(--color-bg-btn-dark-brown);
 }
 
-.c-btn--update {
-    width: 80px;
-    height: 40px;
-    font-size: 16px;
-    letter-spacing: 0.08em;
-    background-color: var(--color-bg-btn-update);
+.c-btn--confirm {
+    width: 120px;
+    height: 42px;
+    background-color: var(--color-bg-btn-dark-brown);
 }
 
-.c-btn--delete {
-    width: 80px;
-    height: 40px;
-    font-size: 16px;
-    letter-spacing: 0.08em;
-    background-color: var(--color-bg-btn-delete);
+.c-btn--thanks {
+    width: 140px;
+    height: 46px;
+    display: grid;
+    place-content: center;
+    background-color: var(--color-bg-btn-dark-brown);
+}
+
+.c-btn--header-logout,
+.c-btn--header-login,
+.c-btn--header-register {
+    width: 100px;
+    height: 34px;
+    color: var(--color-font-lighter-gray);
+    background-color: var(--color-bg-btn-gray-transparent);
+    border: 1px solid var(--color-border-light-brown-orange);
+}
+
+.c-btn--admin-search {
+    width: 102px;
+    height: 50px;
+    font-size: 18px;
+    background-color: var(--color-bg-btn-dark-brown);
+    border: 1px solid var(--color-border-brown);
+}
+
+.c-btn--admin-reset {
+    width: 102px;
+    height: 50px;
+    display: grid;
+    place-content: center;
+    font-size: 18px;
+    background-color: var(--color-bg-btn-light-brown);
+}
+
+.c-btn--admin-export {
+    width: 148px;
+    height: 39px;
+    display: grid;
+    place-content: center;
+    color: var(--color-font-gray);
+    font-size: 18px;
+    background-color: var(--color-bg-btn-thick-gray-transparent);
+}
+
+.c-btn--admin-detail {
+    margin: 0 57px 0 auto;
+    width: 76px;
+    height: 39px;
+    display: grid;
+    place-content: center;
+    color: var(--color-font-lighter-gray);
+    font-size: 18px;
+    background-color: var(--color-bg-btn-thicker-gray-transparent);
+    border: 1px solid var(--color-border-brown-transparent);
+}
+
+.c-btn--admin-modal-delete {
+    margin: 0 auto;
+    width: 76px;
+    height: 39px;
+    color: var(--color-font-white);
+    font-size: 18px;
+    background-color: var(--color-bg-btn-red);
+}
+
+.c-btn--login,
+.c-btn--register {
+    margin: 0 auto;
+    width: 160px;
+    height: 48px;
+    background-color: var(--color-bg-btn-dark-brown);
 }
 
 /* ページネイション */
@@ -82,7 +198,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px 0;
+/* margin: 30px 0; */
 }
 
 .c-pagination__prev {
@@ -144,4 +260,555 @@ body {
     text-align: center;
 }
 
+/* ヘッダーアドミニストレータ（header_admin.php） */
+.header-admin {
+    position: relative;
+}
+
+.header-admin__inner {
+    width: 100%;
+    height: 100px;
+    display: grid;
+    place-content: center;
+    color: var(--color-font-gray);
+    font-size: 40px;
+    border-bottom: 1px solid var(--color-border-gray);
+    text-align: center;
+}
+
+.header-admin__form {
+    position: absolute;
+    top: 40px;
+    right: 6%;
+}
+
 /* お問い合わせ（contact_form.blade.php） */
+.contact-form__content {
+    margin: 0 auto;
+    width: 972px;
+}
+
+.contact-form__title {
+    margin: 50px 0;
+    font-size: 35px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.contact-form__table {
+    margin-bottom: 50px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.contact-form__table input,
+.contact-form__table textarea,
+.contact-form__table select{
+    background-color: var(--color-bg-form-gray);
+    border: none;
+    border-radius: 0;
+}
+
+.contact-form__table input {
+    font-size: 14px;
+    text-indent: 34px;
+}
+
+.contact-form__table select {
+    font-size: 14px;
+    text-indent: 34px;
+}
+
+.contact-form__table input:not(input[type="radio"]),
+.contact-form__table select{
+    height: 38px;
+}
+
+.contact-form__table textarea {
+    height: 129px;
+}
+
+.contact-form__table tr:not(:first-child) th,
+.contact-form__table tr:not(:first-child) td {
+    padding-top: 32px;
+}
+
+.contact-form__table tr th {
+    width: 348px;
+    text-align: left;
+}
+
+.contact-form__table tr td {
+    width: 619px;
+}
+.contact-form__name td input {
+    width: 287px;
+}
+
+.contact-form__name td input:first-child {
+    margin-right: 45px;
+}
+
+.contact-form__gender td input {
+    position: absolute;
+    opacity: 0;
+}
+
+.contact-form__gender td label {
+    padding-left: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.contact-form__gender td label::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border: 1px solid var(--color-radiobtn-gray);
+    border-radius: 50%;
+}
+
+.contact-form__gender td input:checked + label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-radiobtn-gray);
+  border-radius: 50%;
+}
+
+.contact-form__email td input {
+    width: 100%;
+}
+
+.contact-form__tel td input {
+    text-indent: 0;
+    text-align: center;
+}
+
+.contact-form__tel td {
+    display: flex;
+    gap: 17px;
+    align-items: center;
+}
+
+.contact-form__tel td input {
+    width: 178px;
+}
+
+.contact-form__tel td span {
+    display: block;
+}
+
+.contact-form__address td input {
+    width: 100%;
+}
+
+.contact-form__building td input {
+    width: 100%;
+}
+
+.contact-form__category td {
+  position: relative;
+  /* display: inline-block; */
+}
+
+.contact-form__category td select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 30px;
+}
+
+.contact-form__category td::before {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 43px;
+  left: 290px;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 15px solid var(--color-bg-light-gray);
+  pointer-events: none;
+}
+
+/* プレイスホルダーの色をvar(--color-font-lighter-gray)に変更する */
+.contact-form__category td select {
+    width: 332px;
+}
+
+.contact-form__category td option {
+  color: var(--color-font-gray);
+}
+
+.contact-form__detail th {
+    vertical-align: top;
+}
+
+.contact-form__detail td textarea {
+    width: 100%;
+}
+
+.contact-form__btn {
+    margin: 0 auto 33px;
+}
+
+/* 確認（confirm.blade.php） */
+.confirm__content {
+    margin: 0 auto;
+    width: 972px;
+}
+
+.confirm__title {
+    font-size: 35px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.confirm__title {
+    margin: 50px 0;
+}
+
+.confirm__table {
+    margin-bottom: 50px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--color-border-gray);
+}
+
+.confirm__table tr th {
+    padding-left: 62px;
+    width: 305px;
+    height: 70px;
+    color: var(--color-font-white);
+    text-align: left;
+    background-color: var(--color-bg-light-brown);
+}
+
+.confirm__table tr td {
+    padding: 0 47px;
+    width: 667px;
+}
+
+.confirm__table tr:not(:first-child) th,
+.confirm__table tr:not(:first-child) td {
+    border-top: 1px solid var(--color-border-gray);
+}
+
+.confirm__links {
+    margin: 33px;
+    display: flex;
+    justify-content: center;
+    gap: 52px;
+}
+
+.confirm__link {
+    display: grid;
+    place-content: center;
+    position: relative;
+}
+
+.confirm__link:active {
+    opacity: 0.5;
+    color: var(--color-font-gray);
+}
+
+.confirm__link::before {
+    content: '';
+    width: 40px;
+    position: absolute;
+    left: 2px;
+    bottom: 9px;
+    border-bottom: 1px solid var(--color-border-brown);
+}
+
+/* サンクス（thanks.blade.php） */
+.thanks__container {
+    height: 100vh;
+    position: relative;
+}
+
+.thanks__bg {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+    color: var(--color-font-gray-transparent);
+    font-size: 120px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.thanks__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: calc(50% + 30px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.thanks__text {
+    margin-bottom: 50px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* アドミニストレータ（admin.blade.php） */
+.admin__content {
+    margin: 0 auto;
+    width: 1183px;
+}
+
+.admin__title {
+    margin: 40px 0 29px;
+    font-size: 35px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.admin__search {
+    margin-bottom: 37px;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+/* ------------------------ */
+/* 時間があればclass名をつける
+/* ------------------------ */
+.admin__search input[name="name_email"] {
+    width: 347px;
+    height: 50px;
+    font-size: 16px;
+    text-indent: 20px;
+    background-color: var(--color-bg-form-lighter-gray);
+    border: 1px solid var(--color-border-gray-orange);
+    border-radius: 0;
+}
+
+.admin__search select[name="gender"] {
+    width: 102px;
+    height: 50px;
+    font-size: 17px;
+    text-align: center;
+    background-color: var(--color-bg-form-gray);
+    border: 1px solid var(--color-border-gray-orange);
+}
+
+.admin__search select[name="category"] {
+    width: 223px;
+    height: 50px;
+    font-size: 17px;
+    text-align: center;
+    background-color: var(--color-bg-form-gray);
+    border: 1px solid var(--color-border-gray-orange);
+}
+
+.admin__search input[name="date"] {
+    width: 149px;
+    height: 50px;
+    font-size: 17px;
+    text-align: center;
+    background-color: var(--color-bg-form-gray);
+    border: 1px solid var(--color-border-gray-orange);
+}
+
+.admin__other {
+    margin-bottom: 23px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.admin__table thead tr th {
+    height: 59px;
+    text-align: left;
+}
+
+.admin__table thead tr:first-child {
+    color: var(--color-font-white);
+    background-color: var(--color-bg-brown);
+}
+
+.admin__table thead tr th:first-child {
+    padding-left: 55px;
+    width: 235px;
+}
+
+.admin__table thead tr th:nth-child(2) {
+    width: 160px;
+}
+
+.admin__table thead tr th:nth-child(3) {
+    width: 282px;
+}
+
+.admin__table thead tr th:nth-child(4) {
+    width: 220px;
+}
+
+.admin__table tbody tr td {
+    border-bottom: 1px solid var(--color-border-gray);
+}
+
+.admin__table tbody tr td {
+    height: 73px;
+}
+
+.admin__table tbody tr td:first-child {
+    padding-left: 55px;
+    border-left: 1px solid var(--color-border-gray);
+}
+
+.admin__table tbody tr td:nth-child(5) {
+    border-right: 1px solid var(--color-border-gray);
+}
+
+.admin-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+.admin-modal__content {
+    padding: 143px 99px 77px 67px;
+    width: 805px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--color-border-brown);
+    box-shadow: 4px 4px 4px 0px var(--color-shadow-brown-transparent);
+    background-color: var(--color-bg-white);
+}
+
+.admin-modal__table {
+    margin-bottom: 122px;
+}
+
+.admin-modal__table tr th {
+    width: 226px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.admin-modal__table tr:not(:first-child) th,
+.admin-modal__table tr:not(:first-child) td {
+    padding-top: 35px;
+}
+
+.admin-modal__table tr:last-child th {
+    vertical-align: top;
+}
+
+/* ログイン（login.blade.php） */
+.login__content {
+    padding-bottom: 139px;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--color-bg-red-gray);
+}
+
+.login__title {
+    margin: 62px 0 56px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.login__form {
+    padding: 98px 145px 89px 146px;
+    margin: 0 auto;
+    width: 736px;
+    background-color: var(--color-bg-white);
+    border: 1px solid var(--color-border-brown-orange);
+    border-radius: 10px;
+}
+
+.login__form p {
+    margin-bottom: 14px;
+    font-size: 25px;
+}
+
+.login__form input {
+    width: 445px;
+    height: 55px;
+    font-size: 18px;
+    text-indent: 27px;
+    background-color: var(--color-bg-form-gray);
+    border: none;
+    border-radius: 0;
+}
+
+.login__form input:first-of-type {
+    margin-bottom: 47px;
+}
+
+.login__form input:nth-of-type(2) {
+    margin-bottom: 95px;
+}
+
+/* 登録（register.blade.php） */
+.register__content {
+    padding-bottom: 139px;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--color-bg-red-gray);
+}
+
+.register__title {
+    margin: 62px 0 56px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.register__form {
+    padding: 77px 145px 62px 146px;
+    margin: 0 auto;
+    width: 736px;
+    background-color: var(--color-bg-white);
+    border: 1px solid var(--color-border-brown-orange);
+    border-radius: 10px;
+}
+
+.register__form p {
+    margin-bottom: 14px;
+    font-size: 25px;
+}
+
+.register__form input {
+    width: 445px;
+    height: 55px;
+    font-size: 18px;
+    text-indent: 27px;
+    background-color: var(--color-bg-form-gray);
+    border: none;
+    border-radius: 0;
+}
+
+.register__form input:not(:last-of-type) {
+    margin-bottom: 45px;
+}
+
+.register__form input:last-of-type {
+    margin-bottom: 63px;
+}

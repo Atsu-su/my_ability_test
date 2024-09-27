@@ -1,43 +1,49 @@
-<x-layouts.contact_confirm title="内容確認">
+@extends('layouts.base_with_header')
+@section('title', '入力確認')
+@section('content')
   <main>
     <div class="confirm__content">
-      <div class="confirm__heading">
-        <h2>お問い合わせ内容確認</h2>
-      </div>
-      <form class="form" action="{{ route('store') }}" method="post">
-        @csrf
-        <div class="confirm-table">
-          <table class="confirm-table__inner">
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">お名前</th>
-              <td class="confirm-table__text">
-                <input type="text" name="name" value="{{ $name }}" readonly />
-              </td>
-            </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">メールアドレス</th>
-              <td class="confirm-table__text">
-                <input type="email" name="email" value="{{ $email }}" readonly/>
-              </td>
-            </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">電話番号</th>
-              <td class="confirm-table__text">
-                <input type="tel" name="tel" value="{{ $tel }}" readonly/>
-              </td>
-            </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">お問い合わせ内容</th>
-              <td class="confirm-table__text">
-                <input type="text" name="content" value="{{ $content }}" readonly/>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="form__button">
-          <button class="form__button-submit" type="submit">送信</button>
+      <h2 class="confirm__title">Confirm</h2>
+      <form action="" method="post">
+        <table class="confirm__table">
+          <tr class="confirm__name">
+            <th>お名前</span></th>
+            <td>山田</td>
+          </tr>
+          <tr class="confirm__gender">
+            <th>性別</th>
+            <td>男性</td>
+          </tr>
+          <tr class="confirm__email">
+            <th>メールアドレス</th>
+            <td>mail</td>
+          </tr>
+          <tr class="confirm__tel">
+            <th>電話番号</th>
+          <td>1234567890</td>
+          </tr>
+          <tr class="confirm__address">
+            <th>住所</th>
+            <td>あのまち</td>
+          </tr>
+          <tr class="confirm__building">
+            <th>建物名</th>
+            <td>この建物</td>
+          </tr>
+          <tr class="confirm__category">
+            <th>お問い合わせの種類</th>
+            <td>あれ？</td>
+          </tr>
+          <tr class="confirm__detail">
+            <th>お問い合わせ内容</th>
+            <td>忘れた</td>
+          </tr>
+        </table>
+        <div class="confirm__links">
+          <button class="c-btn c-btn--confirm" type="submit">送信</button>
+          <a class="confirm__link" href="">修正</a>
         </div>
       </form>
     </div>
   </main>
-</x-layouts.contact_confirm>
+@endsection
