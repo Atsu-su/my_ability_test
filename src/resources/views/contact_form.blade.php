@@ -1,10 +1,23 @@
-<x-layouts.contact_index title="お問い合わせ">
+@extends('layouts.base_with_header')
+@section('content')
   <main>
     <div class="contact-form__content">
-      <div class="contact-form__heading">
-        <h2>お問い合わせ</h2>
+      <div class="contact-form__title">
+        <h2>Contact</h2>
       </div>
-      <form class="form" action="{{ route('confirm') }}" method="post">
+      <table class="contact-form__table">
+        <tr class="contact-form__name">
+            <th>お名前<span class="necessary">※</span></th>
+            <td><input type="text"><input type="text"></td>
+        </tr>
+        <tr class="contact-form_gender">
+            <th>性別<span class="necessary">※</span></th>
+            <td></td>
+        </tr>
+      </table>
+
+
+      {{-- <form class="form" action="{{ route('confirm') }}" method="post">
         @csrf
         <div class="form__group">
           <div class="form__group-title">
@@ -67,7 +80,7 @@
         <div class="form__button">
           <button class="form__button-submit" type="submit">送 信</button>
         </div>
-      </form>
+      </form> --}}
     </div>
   </main>
-</x-layouts.cotact>
+@endsection

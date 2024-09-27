@@ -1,0 +1,147 @@
+/* ------------------------- */
+/* 全体設定
+/* ------------------------- */
+
+/* カラーコード */
+:root {
+    --color-font-gray: #8B7969;
+    --color-font-red: #FF9494;
+    --color-font-white: #fff;
+    --color-bg-gray: #82756A;
+    --color-bg-white: #fff;
+    --color-bg-form-gray: #F4F4F4;
+    --color-bg-rdbtn-gray: #8B7969;
+    --color-border-gray: #E0DFDE;
+    --color-border-circle-gray: #8B7969;
+}
+
+/* ボディ */
+body {
+    font-family: "Inika", serif;
+    font-size: 20px;
+    color: var(--color-font-gray);
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    background-color: var(--color-bg-white);
+}
+
+/* ------------------------- */
+/* レイアウト（l-）
+/* ------------------------- */
+
+.l-container {
+    margin: 0 auto;
+    width: 70%;
+    max-width: 1366px;
+}
+
+/* ------------------------- */
+/* コンポーネント（c-）
+/* ------------------------- */
+
+/* ボタン */
+.c-btn {
+    display: inline-block;
+    color: var(--color-font-white);
+    border: none;
+    border-radius: 5px;
+    font-family : 'Noto Sans JP', sans-serif;
+}
+
+.c-btn:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.c-btn--create {
+    width: 200px;
+    height: 55px;
+        ;
+    letter-spacing: 0.08em;
+    background-color: var(--color-bg-btn-create);
+}
+
+.c-btn--update {
+    width: 80px;
+    height: 40px;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    background-color: var(--color-bg-btn-update);
+}
+
+.c-btn--delete {
+    width: 80px;
+    height: 40px;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    background-color: var(--color-bg-btn-delete);
+}
+
+/* ページネイション */
+.c-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.c-pagination__prev {
+    width: 30px;
+    height: 30px;
+    border-top: 1px solid var(--color-border-thick-gray);
+    border-left: 1px solid var(--color-border-thick-gray);
+    border-bottom: 1px solid var(--color-border-thick-gray);
+}
+
+.c-pagination__prev svg {
+    vertical-align: top;
+}
+
+.c-pagination__number {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    border-top: 1px solid var(--color-border-thick-gray);
+    border-left: 1px solid var(--color-border-thick-gray);
+    border-bottom: 1px solid var(--color-border-thick-gray);
+}
+
+.c-pagination__number span,
+.c-pagination__number a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.c-pagination__selected {
+    font-weight: bold;
+}
+
+.c-pagination__next {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--color-border-thick-gray);
+}
+
+.c-pagination__next svg {
+    vertical-align: top;
+}
+
+/* ------------------------- */
+/* ページ
+/* ------------------------- */
+
+/* ヘッダー（header.php） */
+.header__inner {
+    width: 100%;
+    height: 100px;
+    display: grid;
+    place-content: center;
+    color: var(--color-font-gray);
+    font-size: 40px;
+    border-bottom: 1px solid var(--color-border-gray);
+    text-align: center;
+}
+
+/* お問い合わせ（contact_form.blade.php） */
