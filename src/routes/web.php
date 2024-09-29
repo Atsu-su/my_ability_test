@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +30,9 @@ Route::get('/thanks', function() {
 
 Route::get('/admin', function() {
     return view('admin');
+});
+
+// 認証機能を追加
+Route::middleware('auth')->group(function() {
+    Route::get('/admin', [AuthController::class, 'index']);
 });
