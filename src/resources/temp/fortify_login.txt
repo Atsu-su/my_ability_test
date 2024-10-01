@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class LoginRequest extends FormRequest
+{
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
+    {
+        return [
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string', 'min:8'],
+            // 追加のカスタムルールをここに記述できます
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.required' => 'メールアドレスは必須です。',
+            'email.email' => '有効なメールアドレスを入力してください。',
+            'password.required' => 'パスワードは必須です。',
+            'password.min' => 'パスワードは8文字以上である必要があります。',
+        ];
+    }
+}
+
+// FortifyServiceProviderのboot方法内
+use App\Http\Requests\LoginRequest;
+use Laravel\Fortify\Fortify;
+
+Fortify::authenticateWith(function (LoginRequest $request) {
+    return $request->validateResolved();
+});
