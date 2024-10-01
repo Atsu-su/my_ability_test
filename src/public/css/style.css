@@ -98,6 +98,15 @@ select:focus{
 }
 
 /* ------------------------- */
+/* jsで操作するクラス（js-）
+/* ------------------------- */
+
+/* 非表示設定 */
+.js-is-hidden {
+    display: none;
+}
+
+/* ------------------------- */
 /* コンポーネント（c-）
 /* ------------------------- */
 
@@ -622,6 +631,7 @@ select:focus{
     height: 50px;
     font-size: 17px;
     text-align: center;
+    text-align-last: center;
     background-color: var(--color-bg-form-gray);
     border: 1px solid var(--color-border-gray-orange);
 }
@@ -631,6 +641,7 @@ select:focus{
     height: 50px;
     font-size: 17px;
     text-align: center;
+    text-align-last: center;
     background-color: var(--color-bg-form-gray);
     border: 1px solid var(--color-border-gray-orange);
 }
@@ -640,6 +651,7 @@ select:focus{
     height: 50px;
     font-size: 17px;
     text-align: center;
+    text-align-last: center;
     background-color: var(--color-bg-form-gray);
     border: 1px solid var(--color-border-gray-orange);
 }
@@ -651,6 +663,7 @@ select:focus{
 }
 
 .admin__table {
+    margin-bottom: 60px;
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -701,7 +714,7 @@ select:focus{
 }
 
 .admin-modal {
-    display: none;
+    /* display: none; */
     position: fixed;
     top: 0;
     left: 0;

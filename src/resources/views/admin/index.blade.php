@@ -1,6 +1,9 @@
 @extends('layouts.base_with_header_admin')
 @section('title', '管理画面')
 @section('content')
+  <script>
+    let data = @json($contacts);
+  </script>
   <main>
     <div class="admin__content">
       <h2 class="admin__title">Admin</h2>
@@ -14,9 +17,9 @@
         </select>
         <select name="category">
           <option value="">お問い合わせの種類</option>
-          <option value="1">カテゴリ1</option>
-          <option value="2">カテゴリ2</option>
-          <option value="3">カテゴリ3</option>
+          @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->content }}</option>
+          @endforeach
         </select>
         <input type="date" name="date">
         <button class="c-btn c-btn--admin-search" type="submit">検索</button>
@@ -27,7 +30,7 @@
           <button class="c-btn c-btn--admin-export" type="submit">エクスポート</button>
         </form>
         <div class="c-pagination">
-          <span>ページネイション</span>
+          {{ $contacts->links('vendor.pagination.custom_pagination') }}
         </div>
       </div>
       <table class="admin__table">
@@ -41,35 +44,24 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($contacts as $contact)
           <tr>
-            <td>山田<span>&emsp;</span>太郎</td>
-            <td>男性</td>
-            <td>test@example.com</td>
-            <td>商品の交換について</td>
+            <td>{{ $contact->last_name }}<span>&emsp;</span>{{ $contact->first_name }}</td>
+            <td>
+              @if ($contact->gender === '1')
+                男性
+              @elseif ($contact->gender === '2')
+                女性
+              @else
+                その他
+              @endif
+            </td>
+            <td>{{ $contact->email }}</td>
+            <td>{{ $contact->category->content }}</td>
             <!-- hrefの情報を元にjsonのデータを取得する -->
-            <td><a class="c-btn c-btn--admin-detail" href="">詳細</a></td>
+            <td>{{ $contact->id }}<a class="admin__detail-button c-btn c-btn--admin-detail" data-id="{{ $contact->id }}">詳細</a></td>
           </tr>
-          <tr>
-            <td>山田<span>&emsp;</span>太郎</td>
-            <td>男性</td>
-            <td>test@example.com</td>
-            <td>商品の交換について</td>
-            <td><a class="c-btn c-btn--admin-detail" href="">詳細</a></td>
-          </tr>
-          <tr>
-            <td>山田<span>&emsp;</span>太郎</td>
-            <td>男性</td>
-            <td>test@example.com</td>
-            <td>商品の交換について</td>
-            <td><a class="c-btn c-btn--admin-detail" href="">詳細</a></td>
-          </tr>
-          <tr>
-            <td>山田<span>&emsp;</span>太郎</td>
-            <td>男性</td>
-            <td>test@example.com</td>
-            <td>商品の交換について</td>
-            <td><a class="c-btn c-btn--admin-detail" href="">詳細</a></td>
-          </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
@@ -77,7 +69,7 @@
 
   <!-- モーダル -->
   <!-- 一つだけ作り、jsで中身を変える -->
-  <div class="admin-modal">
+  <div id="admin-modal" class="js-is-hidden admin-modal">
     <div class="admin-modal__content">
       <div class="admin-modal__cancel">
         <svg width="40" height="42" viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,31 +85,31 @@
           </tr>
           <tr>
             <th>性別</th>
-            <td>男性</td>
+            <td id="gender">男性</td>
           </tr>
           <tr>
             <th>メールアドレス</th>
-            <td>test@example.com</td>
+            <td id="email">test@example.com</td>
           </tr>
           <tr>
             <th>電話番号</th>
-            <td>1234567890</td>
+            <td id="tel">1234567890</td>
           </tr>
           <tr>
             <th>住所</th>
-            <td>とある場所</td>
+            <td id="address">とある場所</td>
           </tr>
           <tr>
             <th>建物名</th>
-            <td>とある建物</td>
+            <td id="building">とある建物</td>
           </tr>
           <tr>
             <th>お問い合わせの種類</th>
-            <td>カテゴリ1</td>
+            <td id="category">カテゴリ1</td>
           </tr>
           <tr>
             <th>お問い合わせ内容</th>
-            <td>こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？</td>
+            <td id="detail">こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？こういうことを聞きたいと思っているが、可能か？</td>
           </tr>
         </table>
         <button class="c-btn c-btn--admin-modal-delete">削除</button>

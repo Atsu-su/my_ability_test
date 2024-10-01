@@ -29,7 +29,7 @@ class ContactFormRequest extends FormRequest
             'first_name' => 'required|max:255',
             'gender' => 'required|between:1,3',
             'email' => 'required|email|max:255',
-            'tel.*' => 'required|numeric|max:5',
+            'tel.*' => 'required|numeric|digits_between:1,5',
             'address' => 'required|max:255',
             'building' => 'required|max:255',
             'category_id' => [

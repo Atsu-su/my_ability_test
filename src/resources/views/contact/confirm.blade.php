@@ -5,6 +5,7 @@
     <div class="confirm__content">
       <h2 class="confirm__title">Confirm</h2>
       <form action="{{ route('contact.store') }}" method="post">
+        @csrf
         <table class="confirm__table">
           <tr class="confirm__name">
             <th>お名前</span></th>
