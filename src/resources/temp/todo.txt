@@ -1,2 +1,0 @@
-> contact_form.blade.php
-  - selectのプレイスホルダーの色をvar(--color-font-lighter-gray)へ変更

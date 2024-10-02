@@ -48,8 +48,6 @@
           @foreach ($contacts as $contact)
           <tr>
             <td>
-              <!-- 削除する -->
-              {{ $contact->id }}
               {{ $contact->last_name }}<span>&emsp;</span>{{ $contact->first_name }}
             </td>
             <td>
@@ -63,7 +61,6 @@
             </td>
             <td>{{ $contact->email }}</td>
             <td>{{ $contact->category->content }}</td>
-            <!-- hrefの情報を元にjsonのデータを取得する -->
             <td><a class="admin__detail-button c-btn c-btn--admin-detail" data-id="{{ $contact->id }}">詳細</a></td>
           </tr>
           @endforeach
@@ -73,7 +70,6 @@
   </main>
 
   <!-- モーダル -->
-  <!-- 一つだけ作り、jsで中身を変える -->
   <div id="admin-modal" class="js-is-hidden admin-modal">
     <div class="admin-modal__content">
       <div id='close-button' class="admin-modal__close">

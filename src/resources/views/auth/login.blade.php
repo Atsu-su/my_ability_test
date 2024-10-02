@@ -7,7 +7,7 @@
       <form class="login__form" action="/login" method="post">
         @csrf
         <p class="login__form-mail">メールアドレス</p>
-        <input type="email" name="email" value="" placeholder="例: test@example.com">
+        <input type="text" name="email" value="" placeholder="例: test@example.com">
         @error('email')
           <p class="error-message">{{ $message }}</p>
         @enderror

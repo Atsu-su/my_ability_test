@@ -22,15 +22,9 @@ Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.co
 Route::post('/thanks', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/delete/{id}', [ContactController::class, 'delete'])->name('contact.delete');
 
-// 管理画面のルーティング
-// Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-// Route::get('/search', [AdminController::class, 'search'])->name('admin.search');
-// Route::post('/search', [AdminController::class, 'search'])->name('admin.search');
-// Route::get('/reset', [AdminController::class, 'reset'])->name('admin.reset');
-
 // 認証機能を追加
 Route::middleware('auth')->group(function() {
-    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/search', [AdminController::class, 'search'])->name('admin.search');
     Route::post('/search', [AdminController::class, 'search'])->name('admin.search');
     Route::get('/reset', [AdminController::class, 'reset'])->name('admin.reset');

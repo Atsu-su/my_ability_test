@@ -6,7 +6,6 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
-use App\Http\Requests\LoginFormRequest;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -64,16 +63,6 @@ class FortifyServiceProvider extends ServiceProvider
             $email = (string) $request->email;
             return Limit::perMinute(10)->by($email . $request->ip());
         });
-
-        // Fortify::authenticateUsing(function (LoginFormRequest $request) {
-        //     $request->validate($request->rules());
-
-        //     $user = User::where('email', $request->email)->first();
-
-        //     if ($user && Hash::check($request->password, $user->password)) {
-        //         return $user;
-        //     }
-        // });
 
         // ログインの時のバリデーション設定（有効にする）
         // Fortify::authenticateWith(function (LoginFormRequest $request) {

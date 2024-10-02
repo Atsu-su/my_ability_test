@@ -16,7 +16,10 @@ trait PasswordValidationRules
         return [
             'required',
             'string',
-            Password::default(),
+
+            // パスワードの文字数指定を無効化
+            // Password::default(),
+
             // パスワード確認を無効化
             //'confirmed'
         ];

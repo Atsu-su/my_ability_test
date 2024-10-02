@@ -81,6 +81,7 @@ class AdminController extends Controller
 
     public function reset()
     {
+        // 検索条件のリセット
         session()->forget('search');
 
         return redirect()->route('admin.index');
