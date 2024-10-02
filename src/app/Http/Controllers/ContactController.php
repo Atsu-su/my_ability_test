@@ -66,4 +66,10 @@ class ContactController extends Controller
 
         return view('contact.thanks');
     }
+
+    public function delete($id)
+    {
+        Contact::destroy($id);
+        return redirect()->route('admin.index');
+    }
 }

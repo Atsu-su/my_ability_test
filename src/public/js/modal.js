@@ -14,8 +14,13 @@ detailButtons.forEach(button => {
 
     // クリックされたボタンのidを取得
     const id = button.getAttribute('data-id');
+
     const dataArray = Object.values(data);
     const modalData = dataArray[1].find(item => item.id == id);
+
+    // モーダル内のformのactionを変更
+    const form = document.getElementById('modal-form');
+    form.action = form.action.replace(':id', id);
 
     // モーダルの表示を変更
     document.getElementById('last-name').textContent = modalData.last_name;
@@ -43,3 +48,16 @@ detailButtons.forEach(button => {
 /* ------------------------------------------------------- */
 /* モーダルを非表示へ変更
 /* ------------------------------------------------------- */
+
+// モーダルの閉じるボタンを取得
+const closeButton = document.getElementById('close-button');
+
+// クリックされたらモーダルを非表示へ変更
+closeButton.addEventListener('click', () => {
+  const modal = document.getElementById('admin-modal');
+  modal.classList.add('js-is-hidden');
+
+  // モーダル内のformのactionを変更（:idへ戻す）
+  const form = document.getElementById('modal-form');
+  form.action = form.action.replace(/\/delete\/\d+/, '/delete/:id');
+});
