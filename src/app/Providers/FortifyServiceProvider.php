@@ -6,7 +6,9 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Http\Requests\LoginFormRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +17,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Http\Requests\LoginRequest;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -63,6 +66,8 @@ class FortifyServiceProvider extends ServiceProvider
             $email = (string) $request->email;
             return Limit::perMinute(10)->by($email . $request->ip());
         });
+
+        app()->bind(LoginRequest::class, LoginFormRequest::class);
 
         // ログインの時のバリデーション設定（有効にする）
         // Fortify::authenticateWith(function (LoginFormRequest $request) {

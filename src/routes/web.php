@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ExportCsvController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +24,10 @@ Route::post('/thanks', [ContactController::class, 'store'])->name('contact.store
 Route::post('/delete/{id}', [ContactController::class, 'delete'])->name('contact.delete');
 
 // 認証機能を追加
-Route::middleware('auth')->group(function() {
+// Route::middleware('auth')->group(function() {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/search', [AdminController::class, 'search'])->name('admin.search');
     Route::post('/search', [AdminController::class, 'search'])->name('admin.search');
     Route::get('/reset', [AdminController::class, 'reset'])->name('admin.reset');
-});
+    Route::post('/export', [ExportCsvController::class, 'exportCsv'])->name('admin.export');
+// });

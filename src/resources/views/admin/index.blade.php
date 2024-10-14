@@ -27,7 +27,8 @@
         <a class="c-btn c-btn--admin-reset" href="{{ route('admin.reset') }}">リセット</a>
       </form>
       <div class="admin__other">
-        <form action="" method="POST">
+        <form action="{{ route('admin.export') }}" method="POST">
+          @csrf
           <button class="c-btn c-btn--admin-export" type="submit">エクスポート</button>
         </form>
         <div class="c-pagination">

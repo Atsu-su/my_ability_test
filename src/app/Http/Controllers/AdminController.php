@@ -49,23 +49,7 @@ class AdminController extends Controller
             $date = session('search.date');
         }
 
-        $query = Contact::with('category');
-        if (! empty($nameOrEmail)) {
-            $query->where(function($query) use ($nameOrEmail) {
-                $query->where('last_name', 'like', "%$nameOrEmail%")
-                    ->orWhere('first_name', 'like', "%$nameOrEmail%")
-                    ->orWhere('email', 'like', "%$nameOrEmail%");
-            });
-        }
-        if (! empty($gender)) {
-            $query->where('gender', $gender);
-        }
-        if (! empty($categoryId)) {
-            $query->where('category_id', $categoryId);
-        }
-        if (! empty($date)) {
-            $query->whereBetween('created_at', ["$date $startTime", "$date $endTime"]);
-        }
+        $query = Contact::with('category')->search($nameOrEmail, $gender, $categoryId, $date);
 
         $contacts = $query->paginate(7);
 
